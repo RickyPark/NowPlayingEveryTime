@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M4Y-Lb-cyx">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8124.4"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookLogo" translatesAutoresizingMaskIntoConstraints="NO" id="8eK-Cx-5Iy">
+                                <rect key="frame" x="154" y="19" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="TfX-xF-gYF"/>
+                                    <constraint firstAttribute="width" constant="60" id="sv5-yf-P1M"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYB-Wr-8Af" userLabel="TwtShareButton">
+                                <rect key="frame" x="256.5" y="0.0" width="145.5" height="99"/>
+                                <color key="backgroundColor" red="0.33333333333333331" green="0.67450980392156867" blue="0.93333333333333335" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="UU3-zt-nmb"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareToTWTTapped:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="ZQ9-QI-o7s"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitterLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-mZ-XGU">
+                                <rect key="frame" x="300" y="27" width="60" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="Le1-MS-EbC"/>
+                                    <constraint firstAttribute="width" constant="60" id="mIh-fA-oYW"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TIF-0E-gMM">
+                                <rect key="frame" x="12" y="0.0" width="99" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="EiS-Ki-Lx4"/>
+                                    <constraint firstAttribute="height" constant="99" id="NrF-OB-FvL"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZq-lj-TSb">
+                                <rect key="frame" x="12" y="0.0" width="99" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="Zo8-hS-vlJ"/>
+                                    <constraint firstAttribute="width" constant="99" id="hhq-XZ-37e"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="coverTapped:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="bZf-U6-i4n"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1e-0S-Ba4" userLabel="FbShareButton">
+                                <rect key="frame" x="111" y="0.0" width="145.5" height="99"/>
+                                <color key="backgroundColor" red="0.23137254901960785" green="0.3411764705882353" blue="0.61568627450980395" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="fH6-hu-pwJ"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareToFBTapped:" destination="M4Y-Lb-cyx" eventType="touchUpInside" id="7Ye-5l-gAQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="rZq-lj-TSb" secondAttribute="centerY" id="4u9-G4-Fbk"/>
+                            <constraint firstItem="p1e-0S-Ba4" firstAttribute="leading" secondItem="rZq-lj-TSb" secondAttribute="trailing" id="CfN-rR-UZJ"/>
+                            <constraint firstItem="p1e-0S-Ba4" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="U8r-Lj-JFA"/>
+                            <constraint firstItem="ArC-mZ-XGU" firstAttribute="centerX" secondItem="eYB-Wr-8Af" secondAttribute="centerX" id="Uzz-qE-edj"/>
+                            <constraint firstAttribute="centerY" secondItem="TIF-0E-gMM" secondAttribute="centerY" id="Vi4-ur-zlf"/>
+                            <constraint firstItem="eYB-Wr-8Af" firstAttribute="leading" secondItem="p1e-0S-Ba4" secondAttribute="trailing" id="br2-2A-Gn1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eYB-Wr-8Af" secondAttribute="trailing" constant="-8" id="pvI-Jx-Cf7"/>
+                            <constraint firstItem="rZq-lj-TSb" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-8" id="s1P-fC-nx8"/>
+                            <constraint firstItem="eYB-Wr-8Af" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" id="sm8-yk-hXS"/>
+                            <constraint firstItem="TIF-0E-gMM" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="-8" id="tUu-Bb-lcW"/>
+                            <constraint firstItem="8eK-Cx-5Iy" firstAttribute="centerX" secondItem="p1e-0S-Ba4" secondAttribute="centerX" id="vmd-6V-NUZ"/>
+                            <constraint firstItem="8eK-Cx-5Iy" firstAttribute="centerY" secondItem="p1e-0S-Ba4" secondAttribute="centerY" id="y0b-8u-MXi"/>
+                            <constraint firstItem="ArC-mZ-XGU" firstAttribute="centerY" secondItem="eYB-Wr-8Af" secondAttribute="centerY" constant="3.5" id="z4u-jE-GsM"/>
+                            <constraint firstItem="eYB-Wr-8Af" firstAttribute="width" secondItem="p1e-0S-Ba4" secondAttribute="width" id="z78-6o-XVA"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="99"/>
+                    <connections>
+                        <outlet property="coverImageView" destination="TIF-0E-gMM" id="e53-2x-djb"/>
+                        <outlet property="fbShareButton" destination="p1e-0S-Ba4" id="424-68-m2R"/>
+                        <outlet property="twtShareButton" destination="eYB-Wr-8Af" id="eX9-Og-vkf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="516" y="285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="facebookLogo" width="72" height="72"/>
+        <image name="twitterLogo" width="88" height="72"/>
+    </resources>
+</document>
