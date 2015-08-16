@@ -59,28 +59,28 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 
     [[MPMusicPlayerController systemMusicPlayer] beginGeneratingPlaybackNotifications];
     
-//    UITapGestureRecognizer *lyricsTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                                                                                 action:@selector(coverImageViewTapped:)];
-//    [lyricsTapGestureRecognizer setDelegate:self];
-//    [_coverImageView setUserInteractionEnabled:YES];
-//    [_coverImageView setGestureRecognizers:@[lyricsTapGestureRecognizer]];
+    UITapGestureRecognizer *lyricsTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                                 action:@selector(coverImageViewTapped:)];
+    [lyricsTapGestureRecognizer setDelegate:self];
+    [_coverImageView setUserInteractionEnabled:YES];
+    [_coverImageView setGestureRecognizers:@[lyricsTapGestureRecognizer]];
 }
 
-//- (void)coverImageViewTapped:(id)sender
-//{
-//    NSLog(@"%s", __FUNCTION__);
-//
-//
-//    if ([[[self currentPlayerController] nowPlayingItem] lyrics].length) {
-//        NSLog(@"has lyrics");
-//
-//        [UIView animateWithDuration:0.35 animations:^{
-//            [_lyricsTextView setAlpha:1.0f];
-//        }];
-//    } else {
-//        NSLog(@"no lyrics");
-//    }
-//}
+- (void)coverImageViewTapped:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+
+
+    if ([[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics].length) {
+        NSLog(@"has lyrics");
+
+        [UIView animateWithDuration:0.35 animations:^{
+            [_lyricsTextView setAlpha:1.0f];
+        }];
+    } else {
+        NSLog(@"no lyrics");
+    }
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -185,9 +185,9 @@ float getScreenHeight()
             [_twtShareButton setUserInteractionEnabled:YES];
         }
         
-//        if ([[[self currentPlayerController] nowPlayingItem] lyrics].length) {
-//            [_lyricsTextView setText:[[[self currentPlayerController] nowPlayingItem] lyrics]];
-//        }
+        if ([[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics].length) {
+            [_lyricsTextView setText:[[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics]];
+        }
     } else {
         [_songTitleLabel setText:@"Fill With Your Music"];
         [_coverImageView setImage:[UIImage imageNamed:@"music-note"]];
