@@ -51,7 +51,7 @@
     nowPlayingItem = [[self currentPlayerController] nowPlayingItem];
     if (nowPlayingItem) {
         CGSize imageSize = nowPlayingItem.artwork.bounds.size;
-        [_coverImageView setImage:[[nowPlayingItem artwork] imageWithSize:CGSizeMake(imageSize.width * 0.1, imageSize.height * 0.1)]];
+        [_coverImageView setImage:[[nowPlayingItem artwork] imageWithSize:CGSizeMake(imageSize.width * 0.2, imageSize.height * 0.1)]];
         NSLog(@"%@", _coverImageView.image);
         [_fbShareButton setUserInteractionEnabled:YES];
         [_twtShareButton setUserInteractionEnabled:YES];
