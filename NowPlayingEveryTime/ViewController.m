@@ -41,9 +41,7 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
     }
 
     // view
-    
-    [_songTitleLabel setScrollDuration:10.0f];
-    [_songTitleLabel setFadeLength:3.0f];
+    [self setMarqueeLabelProperties];
 
     [self hideArtistAndAlbumIfNeeded];
 
@@ -55,7 +53,7 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
                                                  name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                                                object:nil];
 
-    [[self currentPlayerController] beginGeneratingPlaybackNotifications];
+    [[MPMusicPlayerController systemMusicPlayer] beginGeneratingPlaybackNotifications];
     
 //    UITapGestureRecognizer *lyricsTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
 //                                                                                                 action:@selector(coverImageViewTapped:)];
@@ -84,7 +82,7 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 {
     [super viewWillAppear:animated];
 
-    MPMediaItem *currentItem = [[self currentPlayerController] nowPlayingItem];
+    MPMediaItem *currentItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
     [self setViewWithNowPlayingItem:currentItem];
 
     [self setViewAlignments];
@@ -99,22 +97,41 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 }
 
 
-#pragma View Methods
+#pragma mark - View Methods
+
+float getScreenHeight()
+{
+    return [[UIScreen mainScreen] bounds].size.height;
+}
 
 - (void)setLabelsRounded
 {
     [_coverImageView.layer setMasksToBounds:YES];
 }
 
+- (void)setMarqueeLabelProperties
+{
+    [_songTitleLabel setScrollDuration:5.0f];
+    [_songTitleLabel setFadeLength:10.0f];
+    [_songTitleLabel setMarqueeType:MLContinuous];
+    
+    [_artistTitleLabel setScrollDuration:5.0f];
+    [_artistTitleLabel setFadeLength:10.0f];
+    [_artistTitleLabel setMarqueeType:MLContinuous];
+    
+    [_albumTitleLabel setScrollDuration:5.0f];
+    [_albumTitleLabel setFadeLength:10.0f];
+    [_albumTitleLabel setMarqueeType:MLContinuous];
+}
+
 - (void)hideArtistAndAlbumIfNeeded
 {
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height <= 480) {
+    if (getScreenHeight() <= 480) {
         NSLog(@"3.5-inch screen, so set hidden artist & album label");
 
         [_artistTitleLabel setHidden:YES];
         [_albumTitleLabel setHidden:YES];
-    } else if (screenBounds.size.height <= 568) {
+    } else if (getScreenHeight() <= 568) {
         [_artistTitleLabel setHidden:YES];
         [_albumTitleLabel setHidden:NO];
     } else {
@@ -132,9 +149,10 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 
         [_coverImageView setImage:[aCurrentItem.artwork imageWithSize:_coverImageView.frame.size]];
         [_songTitleLabel setText:aCurrentItem.title];
-        CGRect screenBounds = [[UIScreen mainScreen] bounds];
-        if (screenBounds.size.height <= 568) {
-            [_albumTitleLabel setText:aCurrentItem.artist];
+        
+        if (getScreenHeight() <= 568) {
+            NSString *mergedText = [NSString stringWithFormat:@"%@ _ %@", aCurrentItem.artist, aCurrentItem.albumTitle];
+            [_albumTitleLabel setText:mergedText];
         } else {
             [_albumTitleLabel setText:aCurrentItem.albumTitle];
             [_artistTitleLabel setText:aCurrentItem.artist];
@@ -194,31 +212,13 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
     [_twtLogoImageView setCenter:_twtShareButton.center];
 }
 
-#pragma Helper Methods
-
-- (MPMusicPlayerController *)currentPlayerController
-{
-    MPMusicPlayerController *controller;
-
-    NSString *reqSysVer = @"8.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
-        controller = [MPMusicPlayerController systemMusicPlayer];
-    } else {
-        controller = [MPMusicPlayerController iPodMusicPlayer];
-    }
-
-    return controller;
-//    return [MPMusicPlayerController systemMusicPlayer];
-}
-
 #pragma mark - MPMusicPlayerController Notifications
 
 - (void)nowPlayingItemChanged
 {
     NSLog(@"%s", __FUNCTION__);
 
-    [self setViewWithNowPlayingItem:[[self currentPlayerController] nowPlayingItem]];
+    [self setViewWithNowPlayingItem:[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem]];
 }
 
 #pragma mark - Action Methods
@@ -241,7 +241,7 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 
         NSString *initialText = [NSString string];
         NSString *dividerString = @" _ ";
-        MPMediaItem *nowPlayingItem = [[self currentPlayerController] nowPlayingItem];
+        MPMediaItem *nowPlayingItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
         initialText = [[initialText stringByAppendingString:nowPlayingItem.title] stringByAppendingString:dividerString];
         initialText = [[initialText stringByAppendingString:nowPlayingItem.albumTitle] stringByAppendingString:dividerString];
         
