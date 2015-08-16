@@ -41,6 +41,9 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
     }
 
     // view
+    
+    [_songTitleLabel setScrollDuration:10.0f];
+    [_songTitleLabel setFadeLength:3.0f];
 
     [self hideArtistAndAlbumIfNeeded];
 
