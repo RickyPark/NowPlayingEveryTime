@@ -112,15 +112,12 @@ float getScreenHeight()
 - (void)setMarqueeLabelProperties
 {
     [_songTitleLabel setScrollDuration:5.0f];
-    [_songTitleLabel setFadeLength:10.0f];
     [_songTitleLabel setMarqueeType:MLContinuous];
     
     [_artistTitleLabel setScrollDuration:5.0f];
-    [_artistTitleLabel setFadeLength:10.0f];
     [_artistTitleLabel setMarqueeType:MLContinuous];
     
     [_albumTitleLabel setScrollDuration:5.0f];
-    [_albumTitleLabel setFadeLength:10.0f];
     [_albumTitleLabel setMarqueeType:MLContinuous];
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0017CF061B808BF50079D16B /* NPETMarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */; };
 		1B012CD9D82D060117EEF8B5 /* Pods_NowPlayingEveryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64E23D5D8461846163FAB4D /* Pods_NowPlayingEveryTime.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38ED5D2D1AE680E7008113C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED5D2C1AE680E7008113C7 /* main.m */; };
 		38ED5D301AE680E7008113C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED5D2F1AE680E7008113C7 /* AppDelegate.m */; };
@@ -55,6 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPETMarqueeLabel.m; sourceTree = "<group>"; };
+		0017CF071B808C2E0079D16B /* NPETMarqueeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NPETMarqueeLabel.h; sourceTree = "<group>"; };
 		0084D7AD1B010E0400ADA971 /* NowPlayingEveryTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowPlayingEveryTime.entitlements; sourceTree = "<group>"; };
 		0084D7AE1B010E2000ADA971 /* NowPlayingEveryTimeWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowPlayingEveryTimeWidget.entitlements; sourceTree = "<group>"; };
 		046ED165E748EE5FB905E111 /* Pods-NowPlayingEveryTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowPlayingEveryTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NowPlayingEveryTime/Pods-NowPlayingEveryTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				38ED5D2F1AE680E7008113C7 /* AppDelegate.m */,
 				38ED5D311AE680E7008113C7 /* ViewController.h */,
 				38ED5D321AE680E7008113C7 /* ViewController.m */,
+				0017CF071B808C2E0079D16B /* NPETMarqueeLabel.h */,
+				0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */,
 				38ED5D341AE680E7008113C7 /* Main.storyboard */,
 				38ED5D371AE680E7008113C7 /* Images.xcassets */,
 				38ED5D391AE680E7008113C7 /* LaunchScreen.xib */,
@@ -423,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38ED5D331AE680E7008113C7 /* ViewController.m in Sources */,
+				0017CF061B808BF50079D16B /* NPETMarqueeLabel.m in Sources */,
 				38ED5D521AE6813C008113C7 /* UIImage+ResizeImage.m in Sources */,
 				38ED5D301AE680E7008113C7 /* AppDelegate.m in Sources */,
 				38ED5D2D1AE680E7008113C7 /* main.m in Sources */,

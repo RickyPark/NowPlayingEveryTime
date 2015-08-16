@@ -7,14 +7,14 @@
 //
 
 @import UIKit;
-#import "MarqueeLabel.h"
+#import "NPETMarqueeLabel.h"
 
 @interface ViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *coverImageView;
-@property (strong, nonatomic) IBOutlet MarqueeLabel *songTitleLabel;
-@property (strong, nonatomic) IBOutlet MarqueeLabel *albumTitleLabel;
-@property (strong, nonatomic) IBOutlet MarqueeLabel *artistTitleLabel;
+@property (strong, nonatomic) IBOutlet NPETMarqueeLabel *songTitleLabel;
+@property (strong, nonatomic) IBOutlet NPETMarqueeLabel *albumTitleLabel;
+@property (strong, nonatomic) IBOutlet NPETMarqueeLabel *artistTitleLabel;
 @property (strong, nonatomic) IBOutlet UIButton *fbShareButton;
 @property (strong, nonatomic) IBOutlet UIButton *twtShareButton;
 @property (strong, nonatomic) IBOutlet UIImageView *fbLogoImageView;
