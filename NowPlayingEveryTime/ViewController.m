@@ -22,6 +22,10 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 
 @property (nonatomic, assign) BOOL isNoSNSAlertDisplayed;
 
+@property (nonatomic, strong) NSString *songTitle;
+@property (nonatomic, strong) NSString *artistTitle;
+@property (nonatomic, strong) NSString *albumTitle;
+
 @end
 
 @implementation ViewController
@@ -145,14 +149,14 @@ float getScreenHeight()
         [self hideArtistAndAlbumIfNeeded];
 
         [_coverImageView setImage:[aCurrentItem.artwork imageWithSize:_coverImageView.frame.size]];
-        [_songTitleLabel setText:aCurrentItem.title];
+        [_songTitleLabel setText:_songTitle];
         
         if (getScreenHeight() <= 568) {
-            NSString *mergedText = [NSString stringWithFormat:@"%@ _ %@", aCurrentItem.artist, aCurrentItem.albumTitle];
+            NSString *mergedText = [NSString stringWithFormat:@"%@ _ %@", _artistTitle, _albumTitle];
             [_albumTitleLabel setText:mergedText];
         } else {
-            [_albumTitleLabel setText:aCurrentItem.albumTitle];
-            [_artistTitleLabel setText:aCurrentItem.artist];
+            [_albumTitleLabel setText:_albumTitle];
+            [_artistTitleLabel setText:_artistTitle];
         }
 
         [[self.view viewWithTag:BlurredImageTag] removeFromSuperview];
@@ -215,8 +219,19 @@ float getScreenHeight()
 - (void)nowPlayingItemChanged
 {
     NSLog(@"%s", __FUNCTION__);
+    
+    MPMediaItem *currentItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
+    
+    [self getsongInfoWithSong:currentItem];
 
-    [self setViewWithNowPlayingItem:[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem]];
+    [self setViewWithNowPlayingItem:currentItem];
+}
+
+- (void)getsongInfoWithSong:(MPMediaItem *)aCurrentItem
+{
+    _songTitle = aCurrentItem.title ?: @"";
+    _artistTitle = aCurrentItem.artist ?: @"";
+    _albumTitle = aCurrentItem.albumTitle ?: @"";
 }
 
 #pragma mark - Action Methods
