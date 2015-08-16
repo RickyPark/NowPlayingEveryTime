@@ -82,8 +82,8 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 {
     [super viewWillAppear:animated];
 
-    MPMediaItem *currentItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
-    [self setViewWithNowPlayingItem:currentItem];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                                                        object:nil];
 
     [self setViewAlignments];
 }
@@ -158,7 +158,8 @@ float getScreenHeight()
         [[self.view viewWithTag:BlurredImageTag] removeFromSuperview];
         [[self.view viewWithTag:BackgroundImageViewTag] removeFromSuperview];
 
-        UIImage *backgroundCoverEnlargedImage = [UIImage imageWithImage:_coverImageView.image scaledToSize:CGSizeMake(self.view.frame.size.height, self.view.frame.size.height)];
+        UIImage *backgroundCoverEnlargedImage = [UIImage imageWithImage:_coverImageView.image
+                                                           scaledToSize:CGSizeMake(self.view.frame.size.height, self.view.frame.size.height)];
         UIImageView *backgroundCoverImageView = [[UIImageView alloc] initWithImage:backgroundCoverEnlargedImage];
         [backgroundCoverImageView setTag:BackgroundImageViewTag];
         [self.view insertSubview:backgroundCoverImageView atIndex:0];
