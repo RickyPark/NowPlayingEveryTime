@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0016BA141B80DA3100CE67F5 /* Acknowledgements in Resources */ = {isa = PBXBuildFile; fileRef = 0016BA131B80DA3100CE67F5 /* Acknowledgements */; };
 		0017CF061B808BF50079D16B /* NPETMarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */; };
+		00303FEA1B80C5AA00ED04E3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00303FE91B80C5AA00ED04E3 /* Settings.bundle */; };
 		1B012CD9D82D060117EEF8B5 /* Pods_NowPlayingEveryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64E23D5D8461846163FAB4D /* Pods_NowPlayingEveryTime.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38ED5D2D1AE680E7008113C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED5D2C1AE680E7008113C7 /* main.m */; };
 		38ED5D301AE680E7008113C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED5D2F1AE680E7008113C7 /* AppDelegate.m */; };
@@ -56,8 +58,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0016BA131B80DA3100CE67F5 /* Acknowledgements */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Acknowledgements; sourceTree = SOURCE_ROOT; };
 		0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPETMarqueeLabel.m; sourceTree = "<group>"; };
 		0017CF071B808C2E0079D16B /* NPETMarqueeLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NPETMarqueeLabel.h; sourceTree = "<group>"; };
+		00303FE91B80C5AA00ED04E3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		0084D7AD1B010E0400ADA971 /* NowPlayingEveryTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowPlayingEveryTime.entitlements; sourceTree = "<group>"; };
 		0084D7AE1B010E2000ADA971 /* NowPlayingEveryTimeWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowPlayingEveryTimeWidget.entitlements; sourceTree = "<group>"; };
 		046ED165E748EE5FB905E111 /* Pods-NowPlayingEveryTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowPlayingEveryTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NowPlayingEveryTime/Pods-NowPlayingEveryTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 		38ED5D2A1AE680E7008113C7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0016BA131B80DA3100CE67F5 /* Acknowledgements */,
+				00303FE91B80C5AA00ED04E3 /* Settings.bundle */,
 				38ED5D501AE6813C008113C7 /* UIImage+ResizeImage.h */,
 				38ED5D511AE6813C008113C7 /* UIImage+ResizeImage.m */,
 				38ED5D2B1AE680E7008113C7 /* Info.plist */,
@@ -237,6 +243,7 @@
 				38ED5D691AE681A4008113C7 /* Embed App Extensions */,
 				798CD970E9D0AF8DA6C6F63E /* Embed Pods Frameworks */,
 				925B5024117B69E5506F524C /* Copy Pods Resources */,
+				00303FEB1B80D2AB00ED04E3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -350,6 +357,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0016BA141B80DA3100CE67F5 /* Acknowledgements in Resources */,
+				00303FEA1B80C5AA00ED04E3 /* Settings.bundle in Resources */,
 				38ED5D361AE680E7008113C7 /* Main.storyboard in Resources */,
 				38ED5D3B1AE680E7008113C7 /* LaunchScreen.xib in Resources */,
 				38ED5D381AE680E7008113C7 /* Images.xcassets in Resources */,
@@ -375,6 +384,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00303FEB1B80D2AB00ED04E3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd /Users/RickyPark/Documents/NowPlayingEveryTime/Acknowledgements/\nperl genLicense.pl";
+		};
 		28F03EAC650C8480652776F9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
