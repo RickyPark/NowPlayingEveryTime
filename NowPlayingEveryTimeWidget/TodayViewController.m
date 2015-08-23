@@ -48,7 +48,7 @@
 
     NSLog(@"%s", __FUNCTION__);
 
-    nowPlayingItem = [[self currentPlayerController] nowPlayingItem];
+    nowPlayingItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
     if (nowPlayingItem) {
         CGSize imageSize = nowPlayingItem.artwork.bounds.size;
         [_coverImageView setImage:[[nowPlayingItem artwork] imageWithSize:CGSizeMake(imageSize.width * 0.2, imageSize.height * 0.1)]];
@@ -90,23 +90,5 @@
 {
     NSURL *url = [NSURL URLWithString:@"NPET://run"];
     [self.extensionContext openURL:url completionHandler:nil];
-}
-
-#pragma mark - Helper Methods
-
-- (MPMusicPlayerController *)currentPlayerController
-{
-    MPMusicPlayerController *controller;
-
-    NSString *reqSysVer = @"8.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
-        controller = [MPMusicPlayerController systemMusicPlayer];
-    } else {
-        controller = [MPMusicPlayerController iPodMusicPlayer];
-    }
-
-    return controller;
-    //    return [MPMusicPlayerController systemMusicPlayer];
 }
 @end

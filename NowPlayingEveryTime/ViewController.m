@@ -187,6 +187,8 @@ float getScreenHeight()
         
         if ([[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics].length) {
             [_lyricsTextView setText:[[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics]];
+        } else {
+            [_lyricsTextView setText:@""];
         }
     } else {
         [_songTitleLabel setText:@"Fill With Your Music"];
