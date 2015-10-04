@@ -25,6 +25,7 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 @property (nonatomic, strong) NSString *songTitle;
 @property (nonatomic, strong) NSString *artistTitle;
 @property (nonatomic, strong) NSString *albumTitle;
+@property (nonatomic, strong) NSString *lyricsString;
 
 @end
 
@@ -64,21 +65,19 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
     [lyricsTapGestureRecognizer setDelegate:self];
     [_coverImageView setUserInteractionEnabled:YES];
     [_coverImageView setGestureRecognizers:@[lyricsTapGestureRecognizer]];
+    
+    [_swipeToSettingsGestureRecognizer addTarget:self
+                                          action:@selector(swipeToSettings:)];
 }
 
 - (void)coverImageViewTapped:(id)sender
 {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@"%s : %@", __FUNCTION__, _lyricsString.length ? @"has lyrics" : @"no lyrics");
 
-
-    if ([[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics].length) {
-        NSLog(@"has lyrics");
-
+    if (_lyricsTextView.text.length) {
         [UIView animateWithDuration:0.35 animations:^{
             [_lyricsTextView setAlpha:1.0f];
         }];
-    } else {
-        NSLog(@"no lyrics");
     }
 }
 
@@ -185,11 +184,7 @@ float getScreenHeight()
             [_twtShareButton setUserInteractionEnabled:YES];
         }
         
-        if ([[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics].length) {
-            [_lyricsTextView setText:[[[MPMusicPlayerController systemMusicPlayer] nowPlayingItem] lyrics]];
-        } else {
-            [_lyricsTextView setText:@""];
-        }
+        [_lyricsTextView setText:_lyricsString];
     } else {
         [_songTitleLabel setText:@"Fill With Your Music"];
         [_coverImageView setImage:[UIImage imageNamed:@"music-note"]];
@@ -237,6 +232,7 @@ float getScreenHeight()
     _songTitle = aCurrentItem.title ?: @"";
     _artistTitle = aCurrentItem.artist ?: @"";
     _albumTitle = aCurrentItem.albumTitle ?: @"";
+    _lyricsString = aCurrentItem.lyrics ?: @"";
 }
 
 #pragma mark - Action Methods
@@ -340,4 +336,13 @@ float getScreenHeight()
         _isNoSNSAlertDisplayed = NO;
     }
 }
+
+#pragma mark - Swipe Gesture Recognizers
+
+- (void)swipeToSettings:(NSNotification *)aNoti
+{
+    [self performSegueWithIdentifier:@"NPETPushToSettingsSequeIdentifier"
+                              sender:self];
+}
+
 @end

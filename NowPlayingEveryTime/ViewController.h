@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *twtLogoImageView;
 @property (strong, nonatomic) IBOutlet UITextView *lyricsTextView;
 
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeToSettingsGestureRecognizer;
+
 - (IBAction)tappedFBShare:(id)sender;
 - (IBAction)tappedTWTShare:(id)sender;
 
