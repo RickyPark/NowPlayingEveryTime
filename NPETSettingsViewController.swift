@@ -19,6 +19,12 @@ public class NPETSettingsViewController : UITableViewController {
         getSettingsDataFromPlist()
     }
     
+    
+    @IBAction func closeSettingsTapped(sender: AnyObject) {
+        print("close")
+        dismissViewControllerAnimated(true, completion:nil)
+    }
+    
     private func getSettingsDataFromPlist() {
         tableView!.reloadData()
     }

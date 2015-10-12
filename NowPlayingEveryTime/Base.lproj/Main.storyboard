@@ -243,7 +243,13 @@
                             <outlet property="delegate" destination="zMw-bK-G2T" id="9sO-pB-qUz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Qnr-Mt-ihp"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Qnr-Mt-ihp">
+                        <barButtonItem key="leftBarButtonItem" title="Close" style="plain" id="Dch-ND-Ndm">
+                            <connections>
+                                <action selector="closeSettingsTapped:" destination="zMw-bK-G2T" id="L68-EZ-BhZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ja-Rc-Xu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
