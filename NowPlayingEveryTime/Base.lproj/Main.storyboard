@@ -51,7 +51,7 @@
                                     <constraint firstAttribute="height" constant="35" id="e0N-oi-uv5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
@@ -65,7 +65,7 @@
                                     <constraint firstAttribute="height" constant="35" id="pgl-ME-NVX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
@@ -79,7 +79,7 @@
                                     <constraint firstAttribute="height" constant="35" id="TZA-ie-6bT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
@@ -213,11 +213,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="QOL-pN-p6Q"/>
+                <swipeGestureRecognizer direction="left" id="QOL-pN-p6Q"/>
             </objects>
             <point key="canvasLocation" x="377" y="327"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Settings-->
         <scene sceneID="rip-a7-CLo">
             <objects>
                 <tableViewController id="zMw-bK-G2T" customClass="NPETSettingsViewController" customModule="NowPlayingEveryTime" customModuleProvider="target" sceneMemberID="viewController">
@@ -243,7 +243,7 @@
                             <outlet property="delegate" destination="zMw-bK-G2T" id="9sO-pB-qUz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Qnr-Mt-ihp">
+                    <navigationItem key="navigationItem" title="Settings" id="Qnr-Mt-ihp">
                         <barButtonItem key="leftBarButtonItem" title="Close" style="plain" id="Dch-ND-Ndm">
                             <connections>
                                 <action selector="closeSettingsTapped:" destination="zMw-bK-G2T" id="L68-EZ-BhZ"/>
