@@ -10,8 +10,8 @@
 		0016BA141B80DA3100CE67F5 /* Acknowledgements in Resources */ = {isa = PBXBuildFile; fileRef = 0016BA131B80DA3100CE67F5 /* Acknowledgements */; };
 		0017CF061B808BF50079D16B /* NPETMarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */; };
 		00303FEA1B80C5AA00ED04E3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00303FE91B80C5AA00ED04E3 /* Settings.bundle */; };
-		003E5C431BCBC73C0040D634 /* SettingsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 003E5C421BCBC73C0040D634 /* SettingsList.plist */; settings = {ASSET_TAGS = (); }; };
-		00EC0F871BC15CBA000828FC /* NPETSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC0F861BC15CBA000828FC /* NPETSettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		003E5C431BCBC73C0040D634 /* SettingsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 003E5C421BCBC73C0040D634 /* SettingsList.plist */; };
+		00EC0F871BC15CBA000828FC /* NPETSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC0F861BC15CBA000828FC /* NPETSettingsViewController.swift */; };
 		1B012CD9D82D060117EEF8B5 /* Pods_NowPlayingEveryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64E23D5D8461846163FAB4D /* Pods_NowPlayingEveryTime.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38ED5D2D1AE680E7008113C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED5D2C1AE680E7008113C7 /* main.m */; };
 		38ED5D301AE680E7008113C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED5D2F1AE680E7008113C7 /* AppDelegate.m */; };
@@ -405,7 +405,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd /Users/RickyPark/Documents/NowPlayingEveryTime/Acknowledgements/\nperl genLicense.pl";
+			shellScript = "cd ~/NowPlayingEveryTime/Acknowledgements/\nperl genLicense.pl";
 		};
 		28F03EAC650C8480652776F9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

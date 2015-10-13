@@ -54,17 +54,29 @@ public class NPETSettingsViewController : UITableViewController {
             let parsedKey = (settingsKey.componentsSeparatedByString(". ") as Array)
             if Int(parsedKey.first!) == (indexPath.row + 1) {
                 cell!.textLabel?.text = parsedKey.last
+
+                if indexPath.row == 0 {
+                    cell!.detailTextLabel?.text = (NSUserDefaults.standardUserDefaults().objectForKey("NPETDivider") as? String) ?? "_"
+                }
             }
         }
         
         return cell!;
     }
-    
-    func someHandler(alert: UIAlertAction!) {
+
+    func didDividerConfirmAlertHandler(alert: UIAlertAction!) {
+        tableView!.reloadData()
+    }
+
+    func didDividerSelectedHandler(alert: UIAlertAction!) {
         NSUserDefaults.standardUserDefaults().setObject(alert.title!, forKey: "NPETDivider")
         
         let titleString:String = String(format: "Divider is set to %@", arguments: [alert.title!])
-        UIAlertView(title: titleString, message: nil, delegate: nil, cancelButtonTitle: "Okay").show()
+        let resultShowAlertController:UIAlertController = UIAlertController(title: titleString, message: nil, preferredStyle: .Alert)
+        let okayAction:UIAlertAction = UIAlertAction(title: "Okay", style: .Default, handler: didDividerConfirmAlertHandler)
+
+        resultShowAlertController.addAction(okayAction)
+        self.presentViewController(resultShowAlertController, animated: true, completion: nil)
     }
     
     public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -74,9 +86,9 @@ public class NPETSettingsViewController : UITableViewController {
         case 0:
             // show action sheet to select one of "_", "-", or "/". Default value is "_".
             let selectDividerActionSheet:UIAlertController = UIAlertController(title: "Select one in this list", message: nil, preferredStyle: .ActionSheet)
-            let underscoreSelectedAction:UIAlertAction = UIAlertAction(title: "_", style: UIAlertActionStyle.Default, handler: someHandler)
-            let slashSelectedAction:UIAlertAction = UIAlertAction(title: "/", style: UIAlertActionStyle.Default, handler: someHandler)
-            let hyphenSelectedAction:UIAlertAction = UIAlertAction(title: "-", style: UIAlertActionStyle.Default, handler: someHandler)
+            let underscoreSelectedAction:UIAlertAction = UIAlertAction(title: "_", style: UIAlertActionStyle.Default, handler: didDividerSelectedHandler)
+            let slashSelectedAction:UIAlertAction = UIAlertAction(title: "/", style: UIAlertActionStyle.Default, handler: didDividerSelectedHandler)
+            let hyphenSelectedAction:UIAlertAction = UIAlertAction(title: "-", style: UIAlertActionStyle.Default, handler: didDividerSelectedHandler)
             
             selectDividerActionSheet.addAction(underscoreSelectedAction)
             selectDividerActionSheet.addAction(slashSelectedAction)
