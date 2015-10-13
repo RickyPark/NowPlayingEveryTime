@@ -89,10 +89,12 @@ public class NPETSettingsViewController : UITableViewController {
             let underscoreSelectedAction:UIAlertAction = UIAlertAction(title: "_", style: UIAlertActionStyle.Default, handler: didDividerSelectedHandler)
             let slashSelectedAction:UIAlertAction = UIAlertAction(title: "/", style: UIAlertActionStyle.Default, handler: didDividerSelectedHandler)
             let hyphenSelectedAction:UIAlertAction = UIAlertAction(title: "-", style: UIAlertActionStyle.Default, handler: didDividerSelectedHandler)
+            let cancelSelectedAction:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
             
             selectDividerActionSheet.addAction(underscoreSelectedAction)
             selectDividerActionSheet.addAction(slashSelectedAction)
             selectDividerActionSheet.addAction(hyphenSelectedAction)
+            selectDividerActionSheet.addAction(cancelSelectedAction)
             
             self.presentViewController(selectDividerActionSheet, animated: true, completion:nil)
             
