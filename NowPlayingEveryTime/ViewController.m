@@ -26,6 +26,7 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
 @property (nonatomic, strong) NSString *artistTitle;
 @property (nonatomic, strong) NSString *albumTitle;
 @property (nonatomic, strong) NSString *lyricsString;
+@property (nonatomic, strong) NSString *partiallyCopiedLyricsString;
 
 @end
 
@@ -68,17 +69,48 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
     
     [_swipeToSettingsGestureRecognizer addTarget:self
                                           action:@selector(swipeToSettings:)];
+
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    UIMenuItem *facebookItem = [[UIMenuItem alloc] initWithTitle:@"Facebook" action:@selector(didFacebookSelected:)];
+    UIMenuItem *twitterItem = [[UIMenuItem alloc] initWithTitle:@"Twitter" action:@selector(didTwitterSelected:)];
+    [menuController setMenuItems:@[facebookItem, twitterItem]];
+
+    _partiallyCopiedLyricsString = [NSString string];
 }
 
-- (void)coverImageViewTapped:(id)sender
+- (void)didFacebookSelected:(id)sender
 {
-    NSLog(@"%s : %@", __FUNCTION__, _lyricsString.length ? @"has lyrics" : @"no lyrics");
+    NSLog(@"%s", __FUNCTION__);
 
-    if (_lyricsTextView.text.length) {
-        [UIView animateWithDuration:0.35 animations:^{
-            [_lyricsTextView setAlpha:1.0f];
-        }];
+    if (NSEqualRanges(_lyricsTextView.selectedRange, NSMakeRange(0, 0)) == NO) {
+        _partiallyCopiedLyricsString = [_lyricsTextView.text substringWithRange:_lyricsTextView.selectedRange];
     }
+
+    [self showShareViewToThisSNS:SLServiceTypeFacebook];
+}
+
+- (void)didTwitterSelected:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+
+    if (NSEqualRanges(_lyricsTextView.selectedRange, NSMakeRange(0, 0)) == NO) {
+        _partiallyCopiedLyricsString = [_lyricsTextView.text substringWithRange:_lyricsTextView.selectedRange];
+    }
+
+    [self showShareViewToThisSNS:SLServiceTypeTwitter];
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    NSLog(@"%s : %@, with sender : %@", __FUNCTION__, NSStringFromSelector(action), sender);
+
+    if ([NSStringFromSelector(action) isEqualToString:@"didFacebookSelected:"] ||
+        [NSStringFromSelector(action) isEqualToString:@"didTwitterSelected:"] ||
+        [NSStringFromSelector(action) isEqualToString:@"didCopySelected:"]) {
+        return YES;
+    }
+
+    return NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -255,13 +287,17 @@ float getScreenHeight()
 
         NSString *initialText = [NSString string];
         NSString *dividerString = [NSString stringWithFormat:@" %@ ", [[NSUserDefaults standardUserDefaults] objectForKey:@"NPETDivider"] ?: @"_"];
+        if (_partiallyCopiedLyricsString.length > 0) {
+            initialText = [initialText stringByAppendingString:[NSString stringWithFormat:@"%@\n\n", _partiallyCopiedLyricsString]];
+        }
+        initialText = [initialText stringByAppendingString:@"#nowplaying "];
+
         MPMediaItem *nowPlayingItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
         initialText = [[initialText stringByAppendingString:nowPlayingItem.title] stringByAppendingString:dividerString];
         initialText = [[initialText stringByAppendingString:nowPlayingItem.albumTitle] stringByAppendingString:dividerString];
         
         NSString *artistNameWithoutSpace = [nowPlayingItem.artist stringByReplacingOccurrencesOfString:@" " withString:@""];
         initialText = [initialText stringByAppendingString:[@"#" stringByAppendingString:artistNameWithoutSpace]];
-        initialText = [@"#nowplaying " stringByAppendingString:initialText];
         
         if ([aSnsType isEqualToString:SLServiceTypeFacebook]) {
             [[UIPasteboard generalPasteboard] setValue:initialText forPasteboardType:@"public.text"];
@@ -287,7 +323,9 @@ float getScreenHeight()
         
         [self presentViewController:mySLComposerSheet
                            animated:YES
-                         completion:nil];
+                        completion:^{
+                                _partiallyCopiedLyricsString = @"";
+                            }];
     } else {
         if (!_isNoSNSAlertDisplayed) {
             _isNoSNSAlertDisplayed = YES;
@@ -337,12 +375,23 @@ float getScreenHeight()
     }
 }
 
-#pragma mark - Swipe Gesture Recognizers
+#pragma mark - Gesture Recognizers
 
 - (void)swipeToSettings:(NSNotification *)aNoti
 {
     [self performSegueWithIdentifier:@"NPETPushToSettingsSequeIdentifier"
                               sender:self];
+}
+
+- (void)coverImageViewTapped:(id)sender
+{
+    NSLog(@"%s : %@", __FUNCTION__, _lyricsString.length ? @"has lyrics" : @"no lyrics");
+
+    if (_lyricsTextView.text.length) {
+        [UIView animateWithDuration:0.35 animations:^{
+            [_lyricsTextView setAlpha:1.0f];
+        }];
+    }
 }
 
 @end
