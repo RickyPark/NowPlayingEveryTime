@@ -254,7 +254,7 @@ float getScreenHeight()
     if ([SLComposeViewController isAvailableForServiceType:aSnsType]) {
 
         NSString *initialText = [NSString string];
-        NSString *dividerString = @" _ ";
+        NSString *dividerString = [NSString stringWithFormat:@" %@ ", [[NSUserDefaults standardUserDefaults] objectForKey:@"NPETDivider"] ?: @"_"];
         MPMediaItem *nowPlayingItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
         initialText = [[initialText stringByAppendingString:nowPlayingItem.title] stringByAppendingString:dividerString];
         initialText = [[initialText stringByAppendingString:nowPlayingItem.albumTitle] stringByAppendingString:dividerString];
