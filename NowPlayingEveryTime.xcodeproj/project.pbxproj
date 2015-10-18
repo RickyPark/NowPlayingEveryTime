@@ -570,7 +570,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ricky.park.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b8264e5d-fe00-43a6-bf95-0a7cdbb4c6fd";
+				PROVISIONING_PROFILE = "c35148ca-f9a9-41c5-8633-dcb30c9d8581";
 				SWIFT_OBJC_BRIDGING_HEADER = "NowPlayingEveryTime/NowPlayingEveryTime-Bridging-Header.h";
 			};
 			name = AdHoc;
