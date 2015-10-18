@@ -1,10 +1,10 @@
 PODS:
-  - MarqueeLabel (2.2.5)
+  - MarqueeLabel (2.3.3)
 
 DEPENDENCIES:
   - MarqueeLabel
 
 SPEC CHECKSUMS:
-  MarqueeLabel: 65ca60ee9ba554be34f35339004c6c9fe6366a31
+  MarqueeLabel: a8171ed961be61ed8f21d94a5f0d569a9c45df3b
 
 COCOAPODS: 0.38.2
