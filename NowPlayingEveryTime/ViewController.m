@@ -14,6 +14,7 @@
 #import "UIImage+ResizeImage.h"
 
 const static NSString *InitialNoticeKey = @"InitialNoticeKey";
+const static NSString *NoLyricsKey = @"No Lyrics @NPET";
 
 #define BackgroundImageViewTag 100
 #define BlurredImageTag 101
@@ -69,48 +70,8 @@ const static NSString *InitialNoticeKey = @"InitialNoticeKey";
     
     [_swipeToSettingsGestureRecognizer addTarget:self
                                           action:@selector(swipeToSettings:)];
-
-    UIMenuController *menuController = [UIMenuController sharedMenuController];
-    UIMenuItem *facebookItem = [[UIMenuItem alloc] initWithTitle:@"Facebook" action:@selector(didFacebookSelected:)];
-    UIMenuItem *twitterItem = [[UIMenuItem alloc] initWithTitle:@"Twitter" action:@selector(didTwitterSelected:)];
-    [menuController setMenuItems:@[facebookItem, twitterItem]];
-
-    _partiallyCopiedLyricsString = [NSString string];
-}
-
-- (void)didFacebookSelected:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-
-    if (NSEqualRanges(_lyricsTextView.selectedRange, NSMakeRange(0, 0)) == NO) {
-        _partiallyCopiedLyricsString = [_lyricsTextView.text substringWithRange:_lyricsTextView.selectedRange];
-    }
-
-    [self showShareViewToThisSNS:SLServiceTypeFacebook];
-}
-
-- (void)didTwitterSelected:(id)sender
-{
-    NSLog(@"%s", __FUNCTION__);
-
-    if (NSEqualRanges(_lyricsTextView.selectedRange, NSMakeRange(0, 0)) == NO) {
-        _partiallyCopiedLyricsString = [_lyricsTextView.text substringWithRange:_lyricsTextView.selectedRange];
-    }
-
-    [self showShareViewToThisSNS:SLServiceTypeTwitter];
-}
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
-{
-    NSLog(@"%s : %@, with sender : %@", __FUNCTION__, NSStringFromSelector(action), sender);
-
-    if ([NSStringFromSelector(action) isEqualToString:@"didFacebookSelected:"] ||
-        [NSStringFromSelector(action) isEqualToString:@"didTwitterSelected:"] ||
-        [NSStringFromSelector(action) isEqualToString:@"didCopySelected:"]) {
-        return YES;
-    }
-
-    return NO;
+    
+    [self addSNSAtMenuController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -178,6 +139,7 @@ float getScreenHeight()
 - (void)setViewWithNowPlayingItem:(MPMediaItem *)aCurrentItem
 {
     [_lyricsTextView setAlpha:0.0f];
+    [_lyricsTextView setText:_lyricsString];
     
     if (aCurrentItem) {
         [self hideArtistAndAlbumIfNeeded];
@@ -215,8 +177,6 @@ float getScreenHeight()
             [_twtShareButton setAlpha:1.0];
             [_twtShareButton setUserInteractionEnabled:YES];
         }
-        
-        [_lyricsTextView setText:_lyricsString];
     } else {
         [_songTitleLabel setText:@"Fill With Your Music"];
         [_coverImageView setImage:[UIImage imageNamed:@"music-note"]];
@@ -229,8 +189,6 @@ float getScreenHeight()
 
         [[self.view viewWithTag:BackgroundImageViewTag] removeFromSuperview];
         [[self.view viewWithTag:BlurredImageTag] removeFromSuperview];
-        
-        [_lyricsTextView setText:@""];
     }
 }
 
@@ -264,7 +222,7 @@ float getScreenHeight()
     _songTitle = aCurrentItem.title ?: @"";
     _artistTitle = aCurrentItem.artist ?: @"";
     _albumTitle = aCurrentItem.albumTitle ?: @"";
-    _lyricsString = aCurrentItem.lyrics ?: @"";
+    _lyricsString = (aCurrentItem.lyrics.length > 0) ? aCurrentItem.lyrics : [NoLyricsKey copy];
 }
 
 #pragma mark - Action Methods
@@ -385,13 +343,57 @@ float getScreenHeight()
 
 - (void)coverImageViewTapped:(id)sender
 {
-    NSLog(@"%s : %@", __FUNCTION__, _lyricsString.length ? @"has lyrics" : @"no lyrics");
+    NSLog(@"%s : %@", __FUNCTION__, [_lyricsString isEqualToString:[NoLyricsKey copy]] ? @"no lyrics" : @"has lyrics");
 
-    if (_lyricsTextView.text.length) {
-        [UIView animateWithDuration:0.35 animations:^{
-            [_lyricsTextView setAlpha:1.0f];
-        }];
+    [UIView animateWithDuration:0.35 animations:^{
+        [_lyricsTextView setAlpha:1.0f];
+    }];
+}
+
+#pragma mark - Menu Controller Methods
+
+- (void)addSNSAtMenuController
+{
+    UIMenuController *menuController = [UIMenuController sharedMenuController];
+    UIMenuItem *facebookItem = [[UIMenuItem alloc] initWithTitle:@"Facebook" action:@selector(didFacebookSelected:)];
+    UIMenuItem *twitterItem = [[UIMenuItem alloc] initWithTitle:@"Twitter" action:@selector(didTwitterSelected:)];
+    [menuController setMenuItems:@[facebookItem, twitterItem]];
+    
+    _partiallyCopiedLyricsString = [NSString string];
+}
+
+- (void)didFacebookSelected:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    if (NSEqualRanges(_lyricsTextView.selectedRange, NSMakeRange(0, 0)) == NO) {
+        _partiallyCopiedLyricsString = [_lyricsTextView.text substringWithRange:_lyricsTextView.selectedRange];
     }
+    
+    [self showShareViewToThisSNS:SLServiceTypeFacebook];
+}
+
+- (void)didTwitterSelected:(id)sender
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    if (NSEqualRanges(_lyricsTextView.selectedRange, NSMakeRange(0, 0)) == NO) {
+        _partiallyCopiedLyricsString = [_lyricsTextView.text substringWithRange:_lyricsTextView.selectedRange];
+    }
+    
+    [self showShareViewToThisSNS:SLServiceTypeTwitter];
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    NSLog(@"%s : %@, with sender : %@", __FUNCTION__, NSStringFromSelector(action), sender);
+    
+    if ([NSStringFromSelector(action) isEqualToString:@"didFacebookSelected:"] ||
+        [NSStringFromSelector(action) isEqualToString:@"didTwitterSelected:"]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end
