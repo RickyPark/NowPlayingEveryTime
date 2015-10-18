@@ -100,6 +100,16 @@ public class NPETSettingsViewController : UITableViewController {
             
             break;
         case 1:
+//            let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)!
+//            UIApplication.sharedApplication().openURL(settingsUrl)
+            
+            // Read from the Configuration plist the data to make the state of the object valid.
+            if let path = NSBundle.mainBundle().pathForResource("Settings", ofType: "bundle") {
+                if let ackDict = NSDictionary(contentsOfFile:path.stringByAppendingString("/en.lproj/Acknowledgements.strings")) {
+                    print(ackDict)
+                }
+            }
+            
             break;
         default:
             break;
