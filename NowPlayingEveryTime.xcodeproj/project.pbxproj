@@ -11,6 +11,7 @@
 		0017CF061B808BF50079D16B /* NPETMarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */; };
 		00303FEA1B80C5AA00ED04E3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00303FE91B80C5AA00ED04E3 /* Settings.bundle */; };
 		003E5C431BCBC73C0040D634 /* SettingsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 003E5C421BCBC73C0040D634 /* SettingsList.plist */; };
+		00D86BDE1BDCDA45009A0065 /* NPETLicenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D86BDD1BDCDA45009A0065 /* NPETLicenceViewController.swift */; };
 		00EC0F871BC15CBA000828FC /* NPETSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC0F861BC15CBA000828FC /* NPETSettingsViewController.swift */; };
 		1B012CD9D82D060117EEF8B5 /* Pods_NowPlayingEveryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64E23D5D8461846163FAB4D /* Pods_NowPlayingEveryTime.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38ED5D2D1AE680E7008113C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ED5D2C1AE680E7008113C7 /* main.m */; };
@@ -67,6 +68,7 @@
 		003E5C421BCBC73C0040D634 /* SettingsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingsList.plist; sourceTree = "<group>"; };
 		0084D7AD1B010E0400ADA971 /* NowPlayingEveryTime.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowPlayingEveryTime.entitlements; sourceTree = "<group>"; };
 		0084D7AE1B010E2000ADA971 /* NowPlayingEveryTimeWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NowPlayingEveryTimeWidget.entitlements; sourceTree = "<group>"; };
+		00D86BDD1BDCDA45009A0065 /* NPETLicenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPETLicenceViewController.swift; sourceTree = "<group>"; };
 		00EC0F851BC15CB9000828FC /* NowPlayingEveryTime-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NowPlayingEveryTime-Bridging-Header.h"; sourceTree = "<group>"; };
 		00EC0F861BC15CBA000828FC /* NPETSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPETSettingsViewController.swift; sourceTree = SOURCE_ROOT; };
 		046ED165E748EE5FB905E111 /* Pods-NowPlayingEveryTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NowPlayingEveryTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NowPlayingEveryTime/Pods-NowPlayingEveryTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				0017CF071B808C2E0079D16B /* NPETMarqueeLabel.h */,
 				0017CF051B808BF50079D16B /* NPETMarqueeLabel.m */,
 				00EC0F861BC15CBA000828FC /* NPETSettingsViewController.swift */,
+				00D86BDD1BDCDA45009A0065 /* NPETLicenceViewController.swift */,
 				38ED5D341AE680E7008113C7 /* Main.storyboard */,
 				38ED5D371AE680E7008113C7 /* Images.xcassets */,
 				38ED5D391AE680E7008113C7 /* LaunchScreen.xib */,
@@ -462,6 +465,7 @@
 				38ED5D331AE680E7008113C7 /* ViewController.m in Sources */,
 				0017CF061B808BF50079D16B /* NPETMarqueeLabel.m in Sources */,
 				38ED5D521AE6813C008113C7 /* UIImage+ResizeImage.m in Sources */,
+				00D86BDE1BDCDA45009A0065 /* NPETLicenceViewController.swift in Sources */,
 				38ED5D301AE680E7008113C7 /* AppDelegate.m in Sources */,
 				00EC0F871BC15CBA000828FC /* NPETSettingsViewController.swift in Sources */,
 				38ED5D2D1AE680E7008113C7 /* main.m in Sources */,
