@@ -56,7 +56,7 @@ const static NSString *NoLyricsKey = @"No Lyrics @NPET";
 
     // notification
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(nowPlayingItemChanged)
+                                             selector:@selector(nowPlayingItemChanged:)
                                                  name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
                                                object:nil];
 
@@ -72,6 +72,11 @@ const static NSString *NoLyricsKey = @"No Lyrics @NPET";
                                           action:@selector(swipeToSettings:)];
     
     [self addSNSAtMenuController];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,7 +84,7 @@ const static NSString *NoLyricsKey = @"No Lyrics @NPET";
     [super viewWillAppear:animated];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
-                                                        object:nil];
+                                                        object:[NSString stringWithFormat:@"%s", __FUNCTION__]];
 
     [self setViewAlignments];
 }
@@ -90,6 +95,14 @@ const static NSString *NoLyricsKey = @"No Lyrics @NPET";
     NSLog(@"%s", __FUNCTION__);
 
     // Dispose of any resources that can be recreated.
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                                                        object:[NSString stringWithFormat:@"%s", __FUNCTION__]];
 }
 
 
@@ -206,9 +219,9 @@ float getScreenHeight()
 
 #pragma mark - MPMusicPlayerController Notifications
 
-- (void)nowPlayingItemChanged
+- (void)nowPlayingItemChanged:(NSNotification *)aNoti
 {
-    NSLog(@"%s", __FUNCTION__);
+    NSLog(@"%s, %@", __FUNCTION__, aNoti.object);
     
     MPMediaItem *currentItem = [[MPMusicPlayerController systemMusicPlayer] nowPlayingItem];
     
@@ -222,7 +235,18 @@ float getScreenHeight()
     _songTitle = aCurrentItem.title ?: @"";
     _artistTitle = aCurrentItem.artist ?: @"";
     _albumTitle = aCurrentItem.albumTitle ?: @"";
-    _lyricsString = (aCurrentItem.lyrics.length > 0) ? aCurrentItem.lyrics : [NoLyricsKey copy];
+    
+    if (aCurrentItem.lyrics.length > 0) {
+        _lyricsString = aCurrentItem.lyrics;
+    } else {
+        NSURL* songURL = [aCurrentItem valueForProperty:MPMediaItemPropertyAssetURL];
+        AVAsset* songAsset = [AVURLAsset URLAssetWithURL:songURL options:nil];
+        if (songAsset.lyrics.length > 0) {
+            _lyricsString = songAsset.lyrics;
+        } else {
+            _lyricsString = [NoLyricsKey copy];
+        }
+    }
 }
 
 #pragma mark - Action Methods
