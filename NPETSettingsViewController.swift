@@ -14,11 +14,17 @@ public class NPETSettingsViewController : UITableViewController {
     
     var settingsDict:NSDictionary = NSDictionary()
     
+    var thxToCount:Int = 0
+    
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         getSettingsDataFromPlist()
+    }
+    
+    public override func viewWillAppear(animated: Bool) {
+        thxToCount = 0
     }
     
     
@@ -103,6 +109,19 @@ public class NPETSettingsViewController : UITableViewController {
             performSegueWithIdentifier("NPETShowLicenseSequeIdentifier", sender: self)
             
             break;
+            
+        case 2:
+            let messageText:String = (thxToCount == 5 ? "Sweetest \"My Love\", and YOU!" : "YOU who are using NPET!")
+            
+            let thxAlertController = UIAlertController(title: "Special Thanks To..", message:messageText , preferredStyle: .Alert)
+            thxAlertController.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(thxAlertController, animated: true, completion: { () -> Void in
+                self.thxToCount++
+                
+                if self.thxToCount > 5 {
+                    self.thxToCount = 0
+                }
+            })
         default:
             break;
         }
