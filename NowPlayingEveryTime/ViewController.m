@@ -331,6 +331,7 @@ float getScreenHeight()
     if (!_lyricsTextView.isHidden) {
         //do something
         [UIView animateWithDuration:0.35 animations:^{
+            [_lyricsTextView setSelectedRange:NSMakeRange(0, 0)];
             [_lyricsTextView setAlpha:0.0f];
         }];
     }
