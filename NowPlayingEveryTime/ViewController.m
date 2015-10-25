@@ -412,9 +412,11 @@ float getScreenHeight()
 {
     NSLog(@"%s : %@, with sender : %@", __FUNCTION__, NSStringFromSelector(action), sender);
     
-    if ([NSStringFromSelector(action) isEqualToString:@"didFacebookSelected:"] ||
-        [NSStringFromSelector(action) isEqualToString:@"didTwitterSelected:"]) {
-        return YES;
+    if (self.presentedViewController == nil) {
+        if ([NSStringFromSelector(action) isEqualToString:@"didFacebookSelected:"] ||
+            [NSStringFromSelector(action) isEqualToString:@"didTwitterSelected:"]) {
+            return YES;
+        }
     }
     
     return NO;
